@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productivity Analytics</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="glass-bg"></div>
+    <div class="glass-bg-2"></div>
+
+    <main class="dashboard-container">
+        
+        <header class="dashboard-header">
+            <div>
+                <h1>Core<span>Analyze</span></h1>
+                <p>Track your vitals, maximize your output.</p>
+            </div>
+            <div class="date-display" id="current-date">
+                <!-- Javascript will inject current date here -->
+            </div>
+        </header>
+
+        <section class="dashboard-grid">
+            
+            <!-- Left Column: Input Form -->
+            <div class="glass-panel form-panel">
+                <h2>Today's Metrics</h2>
+                <form id="metrics-form">
+                    
+                    <div class="input-group">
+                        <label for="date-input">Date</label>
+                        <input type="date" id="date-input" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="tasks-input">Tasks Completed</label>
+                        <div class="input-wrapper">
+                            <input type="number" id="tasks-input" min="0" required placeholder="e.g. 5">
+                            <span class="input-icon">✓</span>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="sleep-input">Sleep Logged (Hours)</label>
+                        <div class="input-wrapper">
+                            <input type="number" id="sleep-input" min="0" max="24" step="0.5" required placeholder="e.g. 7.5">
+                            <span class="input-icon">☾</span>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="screen-input">Screen Time (Hours)</label>
+                        <div class="input-wrapper">
+                            <input type="number" id="screen-input" min="0" max="24" step="0.5" required placeholder="e.g. 4">
+                            <span class="input-icon">📱</span>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="primary-btn">Log Output <span class="btn-glow"></span></button>
+                </form>
+
+                <div class="action-buttons">
+                    <button id="export-btn" class="secondary-btn">Export CSV</button>
+                    <button id="clear-btn" class="danger-btn">Clear App Data</button>
+                </div>
+            </div>
+
+            <!-- Right Column: Analytics & Stats -->
+            <div class="analytics-panel">
+                
+                <!-- Stat Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card score-card">
+                        <h3>Latest Score</h3>
+                        <div class="score-display">
+                            <span class="score-value" id="latest-score">--</span>
+                            <span class="score-unit">/100</span>
+                        </div>
+                        <div class="score-bar-container">
+                            <div class="score-bar" id="latest-score-bar"></div>
+                        </div>
+                    </div>
+
+                    <div class="stat-card avg-card">
+                        <h3>Average Score</h3>
+                        <div class="score-display">
+                            <span class="score-value" id="avg-score">--</span>
+                            <span class="score-unit">/100</span>
+                        </div>
+                    </div>
+
+                    <div class="stat-card insight-pill-card">
+                        <h3>Key Insight</h3>
+                        <p id="key-insight-msg" class="insight-msg">Need more data to generate insights.</p>
+                    </div>
+                </div>
+
+                <!-- Best & Worst Days -->
+                <div class="extremes-grid">
+                    <div class="extreme-card best-day">
+                        <h4>🏆 Best Day</h4>
+                        <p id="best-day-text">No data</p>
+                    </div>
+                    <div class="extreme-card worst-day">
+                        <h4>📉 Worst Day</h4>
+                        <p id="worst-day-text">No data</p>
+                    </div>
+                </div>
+
+                <!-- Chart Area -->
+                <div class="glass-panel chart-panel">
+                    <h2>Trend Evaluation</h2>
+                    <div class="chart-container">
+                        <canvas id="trendsChart"></canvas>
+                    </div>
+                </div>
+                
+            </div>
+        </section>
+    </main>
+
+    <!-- App Script -->
+    <script src="script.js"></script>
+</body>
+</html>
